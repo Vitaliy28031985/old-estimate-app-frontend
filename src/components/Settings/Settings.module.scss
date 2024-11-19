@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    justify-content: center;
+      
+}
+.allowContainer {
+    display: grid;
+    grid-row-gap: 8px;
+
+    @media screen and (min-width: 1200px) {
+        grid-template-columns: 530px 530px;
+        grid-gap: 16px;
+     }
+
+}
+
+.allowContainer:last-child div {
+    margin-top: 16px;
+    @media screen and (min-width: 1200px) {
+        margin-top: 0;
+     }
+}
+
+h3 {
+    margin-bottom: 10px;
+    color: rgb(58, 95, 86);
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 28.8px;
+}
+
+p {
+    margin-bottom: 20px;
+    color: rgb(58, 95, 86);
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 28.8px;
+}

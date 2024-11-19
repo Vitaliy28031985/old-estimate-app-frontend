@@ -1,0 +1,56 @@
+.container {
+    width: 320px;
+    border-radius: 5px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 34px 135px rgba(0, 0, 0, 0.1), 0px 13.0963px 43px rgba(0, 0, 0, 0.0242963), 0px 2.77037px 11px rgba(0, 0, 0, 0.0157037);
+    @media screen and (min-width: 768px) {
+       width: 768px;
+    }
+    @media screen and (min-width: 1200px) {
+        width: 1200px;
+    }
+}
+
+h1 {
+    font-size: 50;
+    color: rgb(58, 95, 86); 
+    text-align: center;  
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 30px;
+
+}
+
+.numberOne {
+font-size: 200px;
+font-weight: 900;
+color: rgb(58, 95, 86);
+}
+
+.numberTwo {
+    font-size: 200px;
+    font-weight: 900;
+    color: #083E9E;
+}
+
+.logo {
+    width: 200px;
+    height: 200px;
+    padding: 5px;
+    border: solid rgb(58, 95, 86) 3px;
+    border-radius: 20px;
+    background-image: url('../../img/logo.png'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+}

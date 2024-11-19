@@ -1,0 +1,161 @@
+.container {
+    width: 320px;
+    border-radius: 5px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 34px 135px rgba(0, 0, 0, 0.1), 0px 13.0963px 43px rgba(0, 0, 0, 0.0242963), 0px 2.77037px 11px rgba(0, 0, 0, 0.0157037);
+    @media screen and (min-width: 768px) {
+       width: 768px;
+    }
+    @media screen and (min-width: 1200px) {
+        width: 1200px;
+    }
+}
+.userDataContainer {
+
+padding-left: 20px;
+padding-right: 20px;
+@media screen and (min-width: 768px) {  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+@media screen and (min-width: 1200px) {
+    gap: 60px;
+}
+}
+.avatarContainer {
+width: 280px;
+height: 369px;
+margin-bottom: 16px;
+border-radius: 50px;
+background: rgb(196, 196, 196);
+overflow: hidden;
+@media screen and (min-width: 768px) {  
+    width: 180px;
+    height: 269px;
+    margin-bottom: 0;
+}
+@media screen and (min-width: 1200px) {  
+    width: 280px;
+    height: 369px;
+}
+}
+
+.avatarContainer img {
+width: 280px;
+height: 369px;
+border-radius: 50px; 
+@media screen and (min-width: 768px) {  
+    width: 180px;
+    height: 269px;
+}
+@media screen and (min-width: 1200px) {  
+    width: 280px;
+    height: 369px;
+}
+
+}
+.data {
+    margin-bottom: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    border:  solid rgb(58, 95, 86) 1px ;
+    @media screen and (min-width: 768px) {  
+       margin-bottom: 0; 
+    }
+}
+.dataItem {
+
+width: 260px;
+height: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-top: 10px;
+gap: 10px;
+border-radius: 500px;
+background: rgb(58, 95, 86);
+@media screen and (min-width: 768px) {  
+    width: 220px;
+    height: 50px;
+}
+@media screen and (min-width: 1200px) {
+    width: 420px;
+    height: 70px;
+}
+}
+
+.dataItem:first-child {
+    margin-top: 0;
+}
+
+.dataTitle {
+color: rgb(255, 255, 255);
+font-size: 12px;
+font-weight: 400;
+line-height: 1.2;
+text-align: left;
+@media screen and (min-width: 1200px) {
+    font-size: 18px;
+    font-weight: 500;
+}
+}
+
+.dataContentInput {
+color: rgb(255, 255, 255);
+border-width: 0;
+    background: transparent;
+    padding: 0;
+    border-color: transparent;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.2%;
+    text-align: left;
+
+    @media screen and (min-width: 1200px) {
+        font-size: 16px;
+        font-weight: 400;
+    }
+}
+.dataContent {
+color: rgb(255, 255, 255);
+font-size: 11px;
+font-weight: 400;
+line-height: 1.2%;
+text-align: left;
+@media screen and (min-width: 1200px) {
+    font-size: 16px;
+    font-weight: 400;
+}
+}
+
+
+
+.toggleButton {
+    width: 200px;
+    height: 35px;
+    margin-top: 20px;
+    margin-left: 13px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.2%;
+    color: rgb(58, 95, 86);
+    border-color: rgb(58, 95, 86);
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 250ms background 250ms  cubic-bezier(0.4, 0, 0.2, 1); 
+    &:hover, &:focus {
+        background: rgb(58, 95, 86);
+        color: rgb(255, 255, 255);
+    }
+  
+}

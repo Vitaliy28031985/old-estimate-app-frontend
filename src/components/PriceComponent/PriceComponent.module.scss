@@ -1,0 +1,198 @@
+.inputContainer {
+    display: flex;
+    justify-content: center;
+ }
+
+     .inputContainer input {
+        width: 280px;
+        height: 72px;
+        padding: 20px;
+        margin: 15px auto;
+        box-sizing: border-box;
+        border-radius: 12px;
+        border-color: transparent;
+        // border:  1px;
+        background: rgb(255, 255, 255);
+        
+        color: rgb(151, 151, 151);
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.8;
+        text-align: left;
+        
+        
+        &:hover, &:focus {
+        border: solid rgb(151, 151, 151) 2px;
+        outline: none;
+        }
+        @media screen and (min-width: 768px) {
+            width: 600px;
+            height: 72px;
+         }
+
+         @media screen and (min-width: 1200px) {
+            width: 900px;
+           
+         }
+        
+        }
+
+        //Таблиця
+
+h3 {
+     margin-bottom: 20px;
+     color: rgb(58, 95, 86);
+     font-size: 45px;
+     font-weight: 900;
+     line-height: 1.8;
+     text-align: center;
+}
+
+.titleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+table.iksweb{
+	width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+	border-collapse: collapse;
+	border-spacing:0;
+	height: auto;
+    color: rgb(58, 95, 86);
+    background-color: rgb(255, 255, 255, 0.8);
+    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+    // @media screen and (min-width: 768px) {
+    //     width: 100%; 
+    // }
+}
+table.iksweb,table.iksweb td, table.iksweb th {
+	border: 1px solid rgb(58, 95, 86);
+}
+table.iksweb td,table.iksweb th {
+	padding: 3px;
+	height: 35px;
+}
+table.iksweb th {
+	background: #347c99; 
+	color: #fff; 
+	font-weight: normal;
+}
+
+.tableMin {
+    font-size: 15px;
+    font-weight: 800;
+    @media screen and (min-width: 768px) {
+        font-size: 20px; 
+    }
+   
+
+}
+
+.rowOne {
+    position: relative;
+    width: 200px;
+    @media screen and (min-width: 768px) {
+        width: 700px; 
+    }
+}
+
+.twoRow {
+    position: relative;
+    text-align: center;
+  
+}
+
+.twoRow p {
+    margin-right: 40px;
+    @media screen and (min-width: 768px) {
+        margin-right: 50px; 
+    }
+    @media screen and (min-width: 1200px) {
+        margin-right: 0; 
+    }
+}
+
+
+
+.inputTitle {
+    width: 90%;
+    margin-left: 30px;
+    border-width: 0;
+    background-color: transparent;
+    
+    }
+    .inputPrice {
+        width: 90%;
+        border-width: 0;
+        text-align: center;
+        background-color: transparent;
+        
+    }
+
+// кнопки
+
+.buttonAdd {
+    width: 33px;
+    height: 33px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border-color: transparent;
+    border-radius: 50%;
+    color: rgb(58, 95, 86);
+    
+    transition: fill 250ms  cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover, &:focus {
+        background-color: rgb(58, 95, 86);
+        color: rgb(255, 255, 255,);    
+        }  
+}
+
+.buttonAdd svg {
+    fill: currentColor;  
+ }
+
+ .buttonUpdate {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    padding: 1px;
+    background: transparent;
+    border-color: transparent;
+    border-radius: 50%;
+    color: rgb(58, 95, 86);
+    transition: color 250ms background 250ms  cubic-bezier(0.4, 0, 0.2, 1); 
+
+    &:hover, &:focus {
+      color: #fff;
+      background:  rgb(58, 95, 86);   
+    }
+}
+
+.buttonUpdate svg{
+    fill: currentColor;
+
+} 
+
+.buttonDelete {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    padding: 0;
+    border-color: transparent;
+    background: transparent;
+    color: rgb(58, 95, 86);
+    &:hover, &:focus {
+    color: #486581;
+    }
+    
+}
+.buttonDelete svg { 
+    fill: currentColor;
+    
+}

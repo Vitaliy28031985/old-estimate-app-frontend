@@ -1,0 +1,144 @@
+h1 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+    padding: 5px;
+    border-radius: 10px; 
+    color: rgb(58, 95, 86);
+    font-size: 35px;
+    font-weight: 900;
+    line-height: 28.8px; 
+    text-align: center;
+}
+.aadPhoto {
+    max-width: 250px;
+    height: 280px;
+    position: relative;
+    border: 2px dashed #0087F7;
+    padding: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.img {
+    max-width: 200px;
+    max-height: 200px;
+    margin-bottom: 10px;
+}
+.aadPhotoText {
+position: absolute;
+bottom: 5px;
+text-align: center;
+color: rgb(58, 95, 86);  
+}
+.radioContainer {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+
+.falseness {
+    position: relative;
+   display: inline-block;
+   width: 18px;
+   height: 18px;
+   border: 3px solid rgb(58, 95, 86);
+   border-radius: 50%;
+   vertical-align: text-top;
+   cursor: pointer;
+
+}
+
+.falseness::before {
+    width: 15px;
+    height: 15px;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: rgb(8, 62, 158);
+    border-radius: 50%;
+    display: block;
+    transition: 0.2s ease-in;
+}
+
+.real:checked + .falseness::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.real {
+    
+    position: absolute;
+    z-index: 11;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.label {
+margin-left: 10px;
+color: rgb(58, 95, 86);
+font-size: 14px;
+font-weight: 400;
+cursor: pointer;
+@media screen and (min-width: 768px) {
+    font-size: 18px;
+ } 
+}
+.titleRadio {
+color: rgb(58, 95, 86);
+font-size: 24px;
+font-weight: 400;
+line-height: 1.8;
+text-align: left;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+}
+.inputContainer {
+   margin-left: auto;
+   margin-right: auto;
+}
+.inputContainer label {
+display: block;
+color: rgb(58, 95, 86);
+font-size: 24px;
+font-weight: 400;
+line-height: 1.8;
+text-align: left;
+}
+
+.inputContainer input {
+width: 290px;
+height: 52px;
+padding: 20px;
+margin: 15px auto;
+box-sizing: border-box;
+border-bottom: 1px solid rgb(151, 151, 151);
+border-radius: 12px;
+border: solid rgb(255, 255, 255) 1px;
+background: rgb(255, 255, 255);
+
+color: rgb(151, 151, 151);
+font-size: 18px;
+font-weight: 400;
+line-height: 1.8;
+text-align: left;
+
+
+&:hover, &:focus {
+border: solid rgb(151, 151, 151) 1px;
+outline: none;
+}
+@media screen and (min-width: 768px) {
+    width: 550px;
+    height: 72px;
+ }
+
+@media screen and (min-width: 1200px) {
+    width: 700px;
+    height: 72px;
+ }
+}

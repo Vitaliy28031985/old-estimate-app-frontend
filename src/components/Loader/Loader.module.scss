@@ -1,0 +1,37 @@
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid wheat; 
+    border-top: 8px solid #083E9E; 
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+    z-index: 1111;
+  
+  }
+
+  .logo {
+    width: 55px;
+    height: 55px;
+    animation: opacity 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes opacity {
+    0% { opacity: 1; }
+    25% { opacity: 0.6; }
+    50% { opacity: 0.2; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+  }
+  

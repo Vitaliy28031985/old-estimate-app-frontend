@@ -1,0 +1,179 @@
+.header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0px 34px 135px rgba(0, 0, 0, 0.1), 0px 13.0963px 43px rgba(0, 0, 0, 0.0242963), 0px 2.77037px 11px rgba(0, 0, 0, 0.0157037);
+
+}
+.content {
+   position: relative;
+}
+.logo {
+  width: 50px;
+  height: 50px;
+  
+  background-image:  url('../../img/logo.png'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  @media screen and (min-width: 768px) {
+   width: 80px;
+   height: 80px;
+   margin-right: 100px;
+}
+  @media screen and (min-width: 1200px) {
+   margin-right: 344px;
+}
+
+  &:hover, &:focus {
+    opacity: 0.7;
+ }
+}
+.navContainer {
+   display:  none;
+
+   @media screen and (min-width: 768px) {
+      display:  flex;
+      gap: 16px; 
+   }
+   
+   @media screen and (min-width: 1200px) {
+      gap: 26px; 
+  }
+}
+
+
+.buttons {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 70px;
+}
+.menu {
+   @media screen and (min-width: 768px) {
+      display: none;
+     
+   } 
+}
+.menu button {
+   background: transparent;
+   border-color: transparent;
+   &:hover svg, &:focus svg {
+   fill:  rgb(65, 72, 81);
+   }
+}
+.menu svg {
+
+fill: rgb(8, 62, 158);
+}
+
+.button {
+display: none;
+box-sizing: border-box;
+border: 1px solid rgb(58, 95, 86);
+border-radius: 4px;
+background: transparent;
+color: rgb(8, 62, 158);
+font-size: 20px;
+font-weight: 400;
+line-height: -1px;
+letter-spacing: 0%;
+text-align: center;
+margin-left: 40px;
+cursor: pointer;
+transition: color 250ms background 250ms  cubic-bezier(0.4, 0, 0.2, 1); 
+    
+@media screen and (min-width: 768px) {
+   display: block;
+   width: 180px;
+   height: 53px;
+}
+
+@media screen and (min-width: 1200px) {
+   width: 218px;
+   height: 53px;
+}
+
+&:hover, &:focus {
+   color: wheat;
+   background: rgb(58, 95, 86); 
+}
+}
+
+.link{
+   padding-top: 14px;
+   padding-bottom: 14px;
+   padding-left: 15px;
+   padding-right: 15px;
+   font-weight: 400;
+   font-size: 19px;
+   line-height: 16px;
+   color: #083E9E;
+   transition: color 250ms  cubic-bezier(0.4, 0, 0.2, 1); 
+   &:hover, &:focus {
+      border: solid rgb(58, 95, 86) 1px;
+      color:  rgb(58, 95, 86);
+      border-radius: 3px;
+   }
+
+ }
+
+ .link-min {
+   border: solid rgb(58, 95, 86) 1px;
+   color:  rgb(58, 95, 86);
+   border-radius: 3px;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Frame 1837 */
+
+// box-sizing: border-box;
+
+// /* Auto layout */
+// display: flex;
+// flex-direction: column;
+// align-items: flex-start;
+// padding: 50px;
+// gap: 10px;
+
+// width: 697px;
+// height: 743px;
+
+// background: rgba(255, 255, 255, 0.1);
+// border: 1px solid #EEEEEE;
+// box-shadow: 0px 34px 135px rgba(0, 0, 0, 0.1), 0px 13.0963px 43px rgba(0, 0, 0, 0.0242963), 0px 2.77037px 11px rgba(0, 0, 0, 0.0157037);
+// backdrop-filter: blur(15px);
+// /* Note: backdrop-filter has minimal browser support */
+// border-radius: 24px;
+
+// /* Inside auto layout */
+// flex: none;
+// order: 0;
+// flex-grow: 0;

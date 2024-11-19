@@ -1,0 +1,47 @@
+.container {
+    width: 320px;
+    border-radius: 5px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 34px 135px rgba(0, 0, 0, 0.1), 0px 13.0963px 43px rgba(0, 0, 0, 0.0242963), 0px 2.77037px 11px rgba(0, 0, 0, 0.0157037);
+    @media screen and (min-width: 768px) {
+       width: 768px;
+    }
+    @media screen and (min-width: 1200px) {
+        width: 1200px;
+    }
+}
+
+.toggle {
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 16px;
+    text-align: center;
+    color: rgb(65, 72, 81);
+    @media screen and (min-width: 768px) {
+        font-size: 25px;
+     } 
+}
+
+.toggle div{
+display: inline-block;
+margin-left: 10px;
+font-weight: 700;
+font-size: 15px;
+line-height: 16px;
+color: #083E9E;
+cursor: pointer;
+transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1); 
+&:hover, &:focus {
+  color: rgb(65, 72, 81); 
+}
+@media screen and (min-width: 768px) {
+    font-size: 25px;
+ } 
+
+}

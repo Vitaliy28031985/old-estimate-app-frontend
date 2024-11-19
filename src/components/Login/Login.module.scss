@@ -1,0 +1,73 @@
+h1 {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 10px; 
+    color: rgb(58, 95, 86);
+    font-size: 35px;
+    font-weight: 900;
+    line-height: 28.8px; 
+    text-align: center;
+}
+
+.googleButton {
+width: 453px;
+height: 38px;
+margin-left: 400px;
+margin-top: 100px;
+border-radius: 24px;
+padding: 10px, 24px, 10px, 24px; 
+ font-size: 14px;
+ letter-spacing: 0%;
+ text-align: center
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+}
+.inputContainer {
+   margin-left: auto;
+   margin-right: auto;
+}
+.inputContainer label {
+display: block;
+color: rgb(58, 95, 86);
+font-size: 24px;
+font-weight: 400;
+line-height: 1.8;
+text-align: left;
+}
+
+.inputContainer input {
+width: 290px;
+height: 52px;
+padding: 20px;
+margin: 15px auto;
+box-sizing: border-box;
+border-bottom: 1px solid rgb(151, 151, 151);
+border-radius: 12px;
+border: solid rgb(255, 255, 255) 1px;
+background: rgb(255, 255, 255);
+
+color: rgb(151, 151, 151);
+font-size: 18px;
+font-weight: 400;
+line-height: 1.8;
+text-align: left;
+
+
+&:hover, &:focus {
+border: solid rgb(151, 151, 151) 1px;
+outline: none;
+}
+@media screen and (min-width: 768px) {
+    width: 550px;
+    height: 72px;
+ }
+
+@media screen and (min-width: 1200px) {
+    width: 700px;
+    height: 72px;
+ }
+}
