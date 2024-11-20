@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useParams  } from 'react-router-dom';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {useAddAllowMutation} from "../../../redux/auth/authApi"
+import {useAddAllowMutation} from "../../../redux/SettingProject/SettingProjectApi"
 import {projectsApi} from "../../../redux/projectSlice/projectSlice";
 
 import s from "./AddAllow.module.scss";
@@ -46,8 +46,9 @@ function AddAllow() {
             toast.error("Заповніть усі поля!");
             return;
         }
-        try {
-       const add = await addAllow({id, newData: {email, allowLevel: level, lookAt, lookAtTotals}});
+          try {
+            
+       const add = await addAllow([id, {email, allowLevel: level, lookAt, lookAtTotals}]);
        
         
         if (add && add.data) {

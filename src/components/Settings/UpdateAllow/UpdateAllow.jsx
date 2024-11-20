@@ -3,9 +3,9 @@ import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
 import { useParams  } from 'react-router-dom';
-import {useGetUsersQuery} from '../../../redux/auth/authApi';
+import { useGetUsersQuery} from '../../../redux/user/userApi';
 import { useGetProjectByIdQuery } from '../../../redux/projectSlice/projectSlice';
-import {useUpdateAllowUserMutation} from "../../../redux/auth/authApi";
+import {useUpdateAllowMutation} from "../../../redux/SettingProject/SettingProjectApi";
 import {projectsApi} from "../../../redux/projectSlice/projectSlice";
 
 import s from "./UpdateAllow.module.scss";
@@ -14,9 +14,9 @@ function UpdateAllow() {
     const {id} = useParams();
     const dispatch = useDispatch();
 
-    const {data} = useGetUsersQuery();
+    const {data} =  useGetUsersQuery();
     const { data: project } = useGetProjectByIdQuery(id);
-    const [updateAllowUser] = useUpdateAllowUserMutation();
+    const [updateAllowUser] = useUpdateAllowMutation();
     
     const [userData, setUserData] = useState(null);
     const [projectArr, setProjectArr] =useState(null)
@@ -88,7 +88,7 @@ renderData()
             return;
         }
         try {
-        const update =  await updateAllowUser({id, email, allowLevel: level, lookAt, lookAtTotals});
+        const update =  await updateAllowUser([id,  {email, level, lookAt, lookAtTotals}]);
         
         if (update && update.data) {
             dispatch(projectsApi.util.resetApiState());

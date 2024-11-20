@@ -15,16 +15,16 @@ export const materialApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Material'],
+  tagTypes: ['Materials'],
   endpoints: builder => ({
     addMaterial: builder.mutation({
-      query: ({id, materials}) => ({
+      query: ([id, materials]) => ({
         url: `materials/${id}`,
         method: 'POST',
         body: materials,
       }),
   
-      invalidatesTags: ['Material'],
+      invalidatesTags: ['Materials'],
     }) ,
     updateMaterial: builder.mutation({
      
@@ -34,14 +34,14 @@ export const materialApi = createApi({
         body: newData, 
       
       }),
-      invalidatesTags: ['Material'],
+      invalidatesTags: ['Materials'],
     }),
      deleteMaterial: builder.mutation({
        query: param => ({
          url: `materials/${param.idPro}/${param.idMat}`,
          method: 'DELETE',
        }),
-       invalidatesTags: ['Material'],
+       invalidatesTags: ['Materials'],
      }),
 
 

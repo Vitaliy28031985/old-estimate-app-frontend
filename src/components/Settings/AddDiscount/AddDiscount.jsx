@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {projectsApi} from "../../../redux/projectSlice/projectSlice";
-import {useAddDiscountMutation} from "../../../redux/projectSlice/projectSlice";
+import {useAddDiscountMutation} from "../../../redux/SettingProject/SettingProjectApi";
 import s from "./AddDiscount.module.scss";
 
 function AddDiscount() {
@@ -33,7 +33,7 @@ function AddDiscount() {
         }
     
         const data = {
-            discount,
+            discount: Number(discount),
             id: currentId
         }
         try {

@@ -15,11 +15,15 @@ export const userApi = createApi({
     },
   }),
   endpoints: builder => ({
+      getUsers: builder.query({
+      query: () => `/`,
+      providesTags: ['User'],
+    }),
     current: builder.query({
       query: () => `/current`,
       providesTags: ['User'],
     }),
-    changeUser: builder.mutation({
+    changeName: builder.mutation({
       query: (newData) => ({
         url: `/name`,
         method: 'PUT',
@@ -78,8 +82,9 @@ export const userApi = createApi({
 });
 
 export const {
+    useGetUsersQuery,
     useCurrentQuery,
-    useChangeUserMutation,
+    useChangeNameMutation,
     useChangeEmailMutation,
     useChangePhoneMutation,
     useChangeRoleMutation

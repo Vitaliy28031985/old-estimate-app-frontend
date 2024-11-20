@@ -17,9 +17,9 @@ function Settings() {
             <div className={s.allowContainer}>
             <AddAllow/>  
             <UpdateAllow/>  
-             <DeleteAllow/> 
+             <DeleteAllow/>
               <AddLowEstimate/>
-              <AddDiscount/> 
+              <AddDiscount/>  
             </div>
             
             </div>

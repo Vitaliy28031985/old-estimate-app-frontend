@@ -3,7 +3,7 @@ import { useParams  } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {useCurrentQuery} from "../../redux/auth/authApi";
+import {useCurrentQuery} from "../../redux/user/userApi";
 import { useGetProjectByIdQuery } from '../../redux/projectSlice/projectSlice';
 import {useUpdateProjectPriceMutation} from '../../redux/projectPrice/projectPriceApi';
 import {projectsApi} from "../../redux/projectSlice/projectSlice";
@@ -124,7 +124,7 @@ function ProjectPrice() {
             </td>
 			<td className={s.twoRow}>Ціна за одиницю в грн.</td>
 		</tr>
-        {data && filteredContacts?.map(({_id, title, price, isShow = false, isDelete = false}) => (
+        {data && filteredContacts?.map(({_id, id: priceId, title, price, isShow = false, isDelete = false}) => (
            
         <tr key={_id}>
              
@@ -136,7 +136,7 @@ function ProjectPrice() {
                     isShow = !isShow;
                     addIsToggle(_id, isShow, 'update');
                     if(!isShow) {
-                    const update =  await updateProjectPrice({idPro: id, idPrice: _id, newData: {price}});
+                    const update =  await updateProjectPrice({idPro: id, idPrice: priceId, newData: {title,price: Number(price)}});
                     if(update && update.data) { 
                         toast(`Позицію парайсу: ${update.data.title} оновлено!`);
                      dispatch(projectsApi.util.resetApiState());

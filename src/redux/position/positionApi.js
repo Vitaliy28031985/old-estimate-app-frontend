@@ -27,7 +27,7 @@ export const positionApi = createApi({
     }) ,
     updatePosition: builder.mutation({
      
-      query: ([prjId, estId, posId, newData ]) => ({
+      query: ([prjId, estId, posId, newData]) => ({  
         url: `positions/${prjId}/${estId}/${posId}`,
         method: 'PATCH',
         body: newData, 

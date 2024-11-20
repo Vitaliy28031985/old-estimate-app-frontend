@@ -7,7 +7,7 @@ import Modal from "../Modal/Modal";
 import AddMaterial from "../AddModals/AddMaterial/AddMaterial";
 import {projectsApi} from "../../redux/projectSlice/projectSlice";
 import { useGetProjectByIdQuery } from '../../redux/projectSlice/projectSlice';
-import {useCurrentQuery} from "../../redux/auth/authApi";
+import {useCurrentQuery} from "../../redux/user/userApi";
 import {useUpdateMaterialMutation} from "../../redux/material/materialApi";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import Add from "../Icons/Add/Add";
@@ -93,12 +93,12 @@ function MaterialItem() {
 
   const handleSubmit = async (projId, matId, updateMaterial) => {
      const update = await mutate([projId, matId, updateMaterial]);
-     if(update && update.data) { 
+     if(update && update?.data) { 
       toast(`Чек на матеріал: ${update.data.title} оновлено!`);
       dispatch(projectsApi.util.resetApiState());
       }  else {
-      console.error('Unexpected response:', update.error.data.message);
-      toast.error(update.error.data.message);
+      // console.error('Unexpected response:', update.error.data.message);
+      // toast.error(update.error.data.message);
      
         }
        try {
@@ -154,9 +154,10 @@ function MaterialItem() {
                           handleSubmit(data?._id, id, {
                             title,
                             order,
-                            date,
-                            sum,
+                            date: date.toString(),
+                            sum: Number(sum),
                           });
+                          console.log(date)
                         }
                       }}
                     >

@@ -50,8 +50,8 @@ function AddAdvance({ onModal}) {
 
     const newAdvance = { id, advances: { 
         comment: comment || '',
-        date: dataFormat(date)   || '',
-        sum:  sum    || ''
+        date: dataFormat(date).toString()   || '',
+        sum:  Number(sum)    || ''
     
     } };
    

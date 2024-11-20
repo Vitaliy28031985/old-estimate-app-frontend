@@ -56,7 +56,9 @@ function ProjectItem() {
              setUserRole(isUserRole);
         }
         
-        }, [project, userData, userRole]);
+    }, [project, userData, userRole]);
+  
+  console.log("project", project)
     
     const handleToggle = async (operation, data) => {
    
@@ -263,7 +265,7 @@ const onChange = (e) => {
           <>
         
             {data.estimates && data?.estimates?.map((item, index) => (
-              <div key={item._id}>
+              <div key={item.id}>
                 <div className={s.buttonAddContainer}>
                 {isShowEstimate[item.id] ? (
                           
@@ -271,7 +273,7 @@ const onChange = (e) => {
                   type="text"
                   name="title"
                   value={item.title}
-                  id={item._id}
+                  id={item.id}
                   onChange={onChange}
                   className={s.titleInputTablet}
                   />) : (
@@ -302,14 +304,14 @@ const onChange = (e) => {
                   <button className={s.buttonUpdateEstimate}
                   id={item._id}
                   onClick={async() => {
-                    const update = await updateEstimate([data?.id, item?.id, {title: item?.title}]);
+                    const update = await updateEstimate([data?._id, item?.id, {title: item?.title}]);
                     if(update && update.data) { 
-                      toast(`Таблицю кошторису: ${item?.title} оновлено!`);
+                      // toast(`Таблицю кошторису: ${item?.title} оновлено!`);
                        dispatch(projectsApi.util.resetApiState()); 
                        setIsShowEstimate(prevState => ({ ...prevState, [item.id]: false }))
                        }  else {
-                        console.error('Unexpected response:', update.error.data.message);
-                        toast.error(update.error.data.message);
+                        // console.error('Unexpected response:', update.error.data.message);
+                        // toast.error(update.error.data.message);
                        
                         }
                       try {

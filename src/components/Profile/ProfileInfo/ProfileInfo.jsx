@@ -2,20 +2,31 @@ import { useState, useEffect} from "react";
 import {useCurrentQuery} from "../../../redux/user/userApi";
 import Unit from '../Unit/Unit';
 import AdminFunctions from '../AdminFunctions/AdminFunctions';
+import { useChangeNameMutation } from "../../../redux/user/userApi";
 import s from "./ProfileInfo.module.scss";
 
 function ProfileInfo() {
-    const {data} = useCurrentQuery();
+    const { data } = useCurrentQuery();
+    const [changeName] = useChangeNameMutation()
     const [userRole, setUserRole] = useState(false);
+    const [changeNameState, setChangeName] = useState(data?.name);
 
-    const [name, setName] = useState(false);
+    const [name, setName] = useState(true);
   
     const [isAdmin, setIsAdmin] = useState(false);
 
     const handleToggle = () => {
         setIsAdmin(isAdmin => !isAdmin);
         
-      }
+    }
+    
+    const onChange = e => {
+        const {name, value,} = e.currentTarget;
+        switch (name) {
+            case 'name':
+                setChangeName(value);
+}
+    }
     
       useEffect(() => {
 
@@ -53,9 +64,12 @@ function ProfileInfo() {
         </div>
         <ul className={s.data}>
         <li className={s.dataItem}>
-            <button onClick={() => setName(name => !name)}>Change</button>
+                        <button onClick={() => {
+                            setName(name => !name);
+                            changeName({name: changeNameState})
+                        }}>Change</button>
             <p className={s.dataTitle}>Ім'я: </p>
-            {name ? (<p className={s.dataContent}>{data?.name}</p>) : (<input className={s.dataContentInput} value={data?.name} ></input>)}
+            {name ? (<p className={s.dataContent}>{changeNameState}</p>) : (<input onChange={onChange} className={s.dataContentInput} value={changeNameState} name="name" ></input>)}
             {/* <p className={s.dataContent}>{data?.name}</p> */}
         </li>
         <li className={s.dataItem}>

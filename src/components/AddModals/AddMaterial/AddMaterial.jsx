@@ -51,15 +51,15 @@ function AddEstimate({ onModal}) {
       return;
     }
 
-    const newMaterial = { id, materials: { 
+    const newMaterial =  { 
         title: title || '',
-        order: order || '',
+        order: order.toString() || '',
         date: dataFormat(date)   || '',
-        sum:  sum    || ''
+        sum: Number(sum)    || ''
     
-    } };
+    };
     try {
-  const add = await addMaterial(newMaterial);
+  const add = await addMaterial([id, newMaterial]);
        
     if (add && add.data) {
       dispatch(projectsApi.util.resetApiState());

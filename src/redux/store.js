@@ -22,7 +22,8 @@ import {positionApi} from "./position/positionApi";
 import {materialApi} from "./material/materialApi";
 import {advanceApi} from "./advances/advancesApi";
 import {unitsApi} from "./unit/unitApi";
-import {projectPriceApi} from "./projectPrice/projectPriceApi";
+import { projectPriceApi } from "./projectPrice/projectPriceApi";
+import { settingProjectApi } from "./SettingProject/SettingProjectApi";
 
 import authReducer from './auth/authSlice';
 
@@ -43,14 +44,15 @@ export const store = configureStore({
     [materialApi.reducerPath]: materialApi.reducer,
     [advanceApi.reducerPath]: advanceApi.reducer,
     [unitsApi.reducerPath]: unitsApi.reducer,
-    [projectPriceApi.reducerPath]: projectPriceApi.reducer
+    [projectPriceApi.reducerPath]: projectPriceApi.reducer,
+    [settingProjectApi.reducerPath]: settingProjectApi.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(authApi.middleware, userApi.middleware, projectsApi.middleware, priceApi.middleware, estimateApi.middleware, positionApi.middleware, materialApi.middleware, advanceApi.middleware, unitsApi.middleware, projectPriceApi.middleware),
+    }).concat(authApi.middleware, userApi.middleware, projectsApi.middleware, priceApi.middleware, estimateApi.middleware, positionApi.middleware, materialApi.middleware, advanceApi.middleware, unitsApi.middleware, projectPriceApi.middleware, settingProjectApi.middleware),
 });
 
 export const persistor = persistStore(store);

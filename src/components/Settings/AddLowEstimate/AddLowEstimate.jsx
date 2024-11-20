@@ -3,7 +3,7 @@ import { useParams  } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {useAddLowMutation} from "../../../redux/projectSlice/projectSlice";
+import {useAddLowMutation} from "../../../redux/SettingProject/SettingProjectApi";
 import {projectsApi} from "../../../redux/projectSlice/projectSlice";
 import s from "./AddLowEstimate.module.scss";
 
@@ -35,7 +35,7 @@ function AddLowEstimate() {
         }
     
         const data = {
-            discount,
+            discount: Number(discount),
             id: currentId
         }
        try {

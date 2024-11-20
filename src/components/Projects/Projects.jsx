@@ -18,8 +18,7 @@ import s from "./Projects.module.scss";
 function ProjectsComponent () {
   
     const { data: projects } = useGetProjectsQuery();
-    console.log("projects", projects?.
-projects)
+    console.log("projects", projects?.projects)
     const[mutate] = useUpdateProjectMutation();
     const { data: userData } = useCurrentQuery(); 
 
@@ -29,7 +28,6 @@ projects)
 
     const newData = projects?.projects;
 
-    console.log("data", data)
     const [currentData, setCurrentData] = useState({});
     const [userRole, setUserRole] = useState(false);
    

@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useParams  } from 'react-router-dom';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {useGetUsersQuery} from '../../../redux/auth/authApi';
+import { useGetUsersQuery} from '../../../redux/user/userApi';
 import { useGetProjectByIdQuery } from '../../../redux/projectSlice/projectSlice';
-import {useDeleteAllowMutation} from "../../../redux/auth/authApi";
+import {useDeleteAllowMutation} from "../../../redux/SettingProject/SettingProjectApi";
 
 import {projectsApi} from "../../../redux/projectSlice/projectSlice";
 
@@ -14,7 +14,7 @@ import s from "./DeleteAllow.module.scss";
 function DeleteAllow() {
     const {id} = useParams();
     const dispatch = useDispatch();
-    const {data} = useGetUsersQuery();
+    const {data} =  useGetUsersQuery();
     const { data: project } = useGetProjectByIdQuery(id);
     const [deleteAllow] = useDeleteAllowMutation();
 
@@ -76,15 +76,15 @@ renderData()
 
         try {
        
-        const res = await deleteAllow({id, newData: {email}});  
-     
-        if (res && res.data) {
-          dispatch(projectsApi.util.resetApiState());
-          toast(`Дозвіл до кошторису користувача з email: ${email}  скасовано!`);                
-          } else {
-               console.error('Unexpected response:', res.error.data.message);
-               toast.error(res.error.data.message);
-               }
+         await deleteAllow([id, {email}]);  
+        dispatch(projectsApi.util.resetApiState());
+          toast(`Дозвіл до кошторису користувача з email: ${email}  скасовано!`);
+        // if (res && res.data) {
+                       
+        //   } else {
+        //       //  console.error('Unexpected response:', res.error.data.message);
+        //       //  toast.error(res.error.data.message);
+        //        }
         } catch (error) {
           toast.error(`User with the title: ${email} does not exist!`, error);
         } 

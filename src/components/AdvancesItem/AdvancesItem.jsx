@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useGetProjectByIdQuery } from '../../redux/projectSlice/projectSlice';
 import { useUpdateAdvanceMutation} from '../../redux/advances/advancesApi';
-import {useCurrentQuery} from "../../redux/auth/authApi";
+import {useCurrentQuery} from "../../redux/user/userApi";
 import {projectsApi} from "../../redux/projectSlice/projectSlice";
 import AddAdvance from "../AddModals/AddAdvance/AddAdvance";
 import Modal from '../Modal/Modal';
@@ -145,7 +145,7 @@ const onChange = (e) => {
                     isShow = !isShow;
                     addIsToggle(id, isShow, 'update');
                     if(!isShow) {
-                       handleSubmit(data?._id, id, {comment, date, sum})
+                       handleSubmit(data?._id, id, {comment, date: date.toString(), sum: Number(sum)})
                     }
                     }}>
                     {isShow ? (<UpdateOk width='22' height='22'/>) :
