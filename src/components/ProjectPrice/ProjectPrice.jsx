@@ -173,7 +173,7 @@ function ProjectPrice() {
              <button className={s.buttonDelete} onClick={() => {
                 isDelete = !isDelete;
                 addIsToggle(_id, isDelete, 'deleteProjectPrice');
-                setCurrentData({id: _id, title}); 
+                setCurrentData({id: priceId, title}); 
                 handleToggle("deleteProjectPrice");
             }}>
                 <Delete width={"24"} height={"24"}/>

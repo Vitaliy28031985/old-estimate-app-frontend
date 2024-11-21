@@ -25,14 +25,7 @@ export const projectPriceApi = createApi({
      
         invalidatesTags: ['Project'],
       }),
-      deleteProjectPrice: builder.mutation({
-        query: ({ idPro, idPrice }) => ({
-          url: `/${idPro}/${idPrice}`,
-          method: 'DELETE',
-        }),
-        invalidatesTags: ['Project'],
-      }),
-      updateProjectPrice: builder.mutation({
+       updateProjectPrice: builder.mutation({
         query: ({ idPro, idPrice, newData }) => ({
           url: `/${idPro}/${idPrice}`,
           method: 'PATCH',
@@ -40,7 +33,14 @@ export const projectPriceApi = createApi({
         }),
         invalidatesTags: ['Project'],
       }),
-      
+      deleteProjectPrice: builder.mutation({
+        query: ({ idPro, idPrice }) => ({
+          url: `/${idPro}/${idPrice}`,
+          method: 'DELETE',
+        }),
+        invalidatesTags: ['Project'],
+      }),
+     
     }),
   });
 

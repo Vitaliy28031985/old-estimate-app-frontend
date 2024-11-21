@@ -191,7 +191,7 @@ function LowProjectPrice() {
 		
 	</tbody>
 </table>
-{deleteModal && (<DeleteModal data={currentData} nameComponent={"deleteProjectPrice"} onModal={handleToggle}/>)}
+{deleteModal && (<DeleteModal data={currentData} nameComponent={"deleteLowProjectPrice"} onModal={handleToggle}/>)}
 {showModal && (<Modal onModal={handleToggle}><AddLowProjectPrice onModal={handleToggle}/></Modal>)}
 
 

@@ -11,6 +11,7 @@ import {useDeleteMaterialMutation} from "../../redux/material/materialApi";
 import { useDeleteAdvanceMutation } from '../../redux/advances/advancesApi';
 import { useDeleteLowPositionMutation } from '../../redux/lowPosition/lowPositionApi';
 import { useDeleteLowEstimateMutation } from "../../redux/lowEstimate/lowEstimateApi";
+import { useDeleteLowProjectPriceMutation } from "../../redux/lowProjectPrice/lowProjectPriceApi";
 import {projectsApi} from "../../redux/projectSlice/projectSlice";
 import s from "./DeleteModal.module.scss";
 
@@ -26,7 +27,8 @@ function DeleteModal({data, nameComponent, onModal}) {
     const [deleteMaterial] = useDeleteMaterialMutation();
     const [deleteAdvance] = useDeleteAdvanceMutation();
     const [deleteLowPosition] = useDeleteLowPositionMutation();
-    const [deleteLowEstimate] = useDeleteLowEstimateMutation()
+    const [deleteLowEstimate] = useDeleteLowEstimateMutation();
+    const [deleteLowProjectPrice] = useDeleteLowProjectPriceMutation();
 
     const deleteFunction = async () => {
         // Загальний прайс
@@ -68,6 +70,33 @@ function DeleteModal({data, nameComponent, onModal}) {
             onModal();
             return;
         }
+
+
+        //прайс нижчого кошторису
+        if(nameComponent === "deleteLowProjectPrice") {
+            const deleteProjectPriceData = { idPro: id, idPrice: data.id}; 
+
+            try {
+                const deletePriceProject = await deleteLowProjectPrice(deleteProjectPriceData);
+                
+                if (deletePriceProject && deletePriceProject.data) {
+                 toast(deletePriceProject.data.message);
+               
+                 dispatch(projectsApi.util.resetApiState());
+             
+                 } else {
+                      console.error('Unexpected response:', deletePriceProject.error.data.message);
+                      toast.error(deletePriceProject.error.data.message);
+                     
+                      }
+                      } catch (error) {          
+                      console.error('Error delete price:', error);
+                      
+                  }  
+            onModal();
+            return;
+        }
+
        // видалення кошторису
 
         if(nameComponent === "projects") {

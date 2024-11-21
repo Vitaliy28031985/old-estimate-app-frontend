@@ -388,14 +388,8 @@ const onChange = (e) => {
                    
                     </td>
                   <td>
-                  {!isShow ? 
-                  (<p>{title}</p>) : 
-                  (
-                  <input type='text' id={_id} name='title' className={s.inputTitle} value={title} disabled={!isShow} 
-                    onChange={onChange}
-                    />
-                  )
-                  }</td>                 
+                  <p>{title}</p>
+                  </td>                 
                   <td className={s.threeRow}>{!isShow ? 
                   (<p>{unit}</p>) : 
                   (
