@@ -73,11 +73,6 @@ export const userApi = createApi({
       }),
       invalidatesTags: ['User'],
     }),
-
-    // getUsers: builder.query({
-    //   query: () => `/`,
-    //   providesTags: ['User'],
-    // }),
   }),
 });
 

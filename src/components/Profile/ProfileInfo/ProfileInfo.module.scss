@@ -95,6 +95,23 @@ background: rgb(58, 95, 86);
     margin-top: 0;
 }
 
+.changeButton {
+    background:  transparent;
+    border-color: transparent;
+    color: rgb(255, 255, 255);
+    &:hover,
+        &:focus {
+            border-width: 1px;
+            border-color: rgb(255, 255, 255);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+}
+
+.changeButton svg {
+    fill: currentColor;
+}
+
 .dataTitle {
 color: rgb(255, 255, 255);
 font-size: 12px;
@@ -104,6 +121,7 @@ text-align: left;
 @media screen and (min-width: 1200px) {
     font-size: 18px;
     font-weight: 500;
+
 }
 }
 
