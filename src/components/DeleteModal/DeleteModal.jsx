@@ -8,7 +8,9 @@ import {useDeletePositionMutation} from '../../redux/position/positionApi';
 import {useDeleteEstimateMutation} from '../../redux/estimate/estimateApi';
 import {useDeleteProjectPriceMutation} from '../../redux/projectPrice/projectPriceApi';
 import {useDeleteMaterialMutation} from "../../redux/material/materialApi";
-import { useDeleteAdvanceMutation} from '../../redux/advances/advancesApi';
+import { useDeleteAdvanceMutation } from '../../redux/advances/advancesApi';
+import { useDeleteLowPositionMutation } from '../../redux/lowPosition/lowPositionApi';
+import { useDeleteLowEstimateMutation } from "../../redux/lowEstimate/lowEstimateApi";
 import {projectsApi} from "../../redux/projectSlice/projectSlice";
 import s from "./DeleteModal.module.scss";
 
@@ -23,6 +25,8 @@ function DeleteModal({data, nameComponent, onModal}) {
     const [deleteProjectPrice] = useDeleteProjectPriceMutation();
     const [deleteMaterial] = useDeleteMaterialMutation();
     const [deleteAdvance] = useDeleteAdvanceMutation();
+    const [deleteLowPosition] = useDeleteLowPositionMutation();
+    const [deleteLowEstimate] = useDeleteLowEstimateMutation()
 
     const deleteFunction = async () => {
         // Загальний прайс
@@ -117,6 +121,30 @@ function DeleteModal({data, nameComponent, onModal}) {
             return;
         }
 
+        if(nameComponent === "deleteLowEstimate") {
+            
+            const deleteEstimateData = {idPro: id, idEst: data.id}
+
+            try {
+                const estimateDelete = await deleteLowEstimate(deleteEstimateData);
+                
+                if (estimateDelete && estimateDelete.data) {
+                    toast(`"${data.title}" успішно видалена!`);
+               
+                 dispatch(projectsApi.util.resetApiState());
+             
+                 } else {
+                      console.error('Unexpected response:', estimateDelete.error.data.message);
+                      toast.error(estimateDelete.error.data.message);
+                     
+                      }
+                      } catch (error) {          
+                      console.error('Error delete project:', error);  
+                  } 
+            onModal();
+            return;
+        }
+
         if(nameComponent === "deletePosition") {
 
             const deletePositionData = {idPro: id, idEst: data.estimateId, idPos: data.positionId}
@@ -142,6 +170,36 @@ function DeleteModal({data, nameComponent, onModal}) {
             onModal();
             return;
         }
+
+
+  if(nameComponent === "deleteLowPosition") {
+
+            const deletePositionData = {idPro: id, idEst: data.estimateId, idPos: data.positionId}
+            
+
+            try {
+                const positionDelete = await deleteLowPosition(deletePositionData);
+                
+                if (positionDelete && positionDelete.data) {
+                    toast(`"${data.title}" успішно видалена!`);
+               
+                 dispatch(projectsApi.util.resetApiState());
+             
+                 } else {
+                      console.error('Unexpected response:', positionDelete.error.data.message);
+                      toast.error(positionDelete.error.data.message);
+                     
+                      }
+                      } catch (error) {          
+                      console.error('Error delete project:', error);  
+                  } 
+
+            onModal();
+            return;
+        }
+
+
+
         // видалення матеріалів
         if(nameComponent === "deleteMaterial") {
             

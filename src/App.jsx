@@ -24,6 +24,7 @@ const Project = lazy(() => import('./Pages/ProjectPage/Project/Project' /* webpa
 const MaterialsPage = lazy(() => import('./Pages/ProjectPage/MaterialPage/MaterialPage' /* webpackChunkName: "MaterialsPage" */));
 const Advances = lazy(() => import('./Pages/ProjectPage/AdvancesPage/AdvancesPage' /* webpackChunkName: "Advances" */));
 const ProjectPrice = lazy(() => import('./Pages/ProjectPage/ProjectPricePage/ProjectPricePage' /* webpackChunkName: "ProjectPrice" */));
+const LowProjectPrice = lazy(() => import('./Pages/ProjectPage/LowProjectPricePage/LowProjectPricePage' /* webpackChunkName: "LowProjectPrice" */));
 const LowProject = lazy(() => import('./Pages/ProjectPage/LowProjectPage/LowProjectPage' /* webpackChunkName: "LowProject" */));
 const Settings = lazy(() => import('./Pages/SettingsPage/SettingsPage' /* webpackChunkName: "Settings" */));
 const MassageAllow = lazy(() => import('./Pages/MassageAllow/MassageAllow' /* webpackChunkName: "MassageAllow" */));
@@ -46,8 +47,9 @@ function App() {
          <Route path="/projects" element={<PrivateRoute><Projects/></PrivateRoute>} />
          <Route path="/project/:id" element={<PrivateRoute><ProjectPage /></PrivateRoute>}>
             <Route index element={<PrivateRoute><Project /></PrivateRoute>} />
-            <Route path="price" element={<PrivateRoute><ProjectPrice /></PrivateRoute>} />
-            <Route path="low" element={<PrivateRoute><LowProject /></PrivateRoute>} />
+              <Route path="price" element={<PrivateRoute><ProjectPrice /></PrivateRoute>} />
+              <Route path="low" element={<PrivateRoute><LowProjectPrice /></PrivateRoute>} />
+            <Route path="low/project" element={<PrivateRoute><LowProject /></PrivateRoute>} />
             <Route path="materials" element={<PrivateRoute><MaterialsPage /></PrivateRoute>} />
             <Route path="advances" element={<PrivateRoute><Advances /></PrivateRoute>} />
           </Route>

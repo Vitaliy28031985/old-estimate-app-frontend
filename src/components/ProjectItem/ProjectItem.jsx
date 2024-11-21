@@ -57,8 +57,7 @@ function ProjectItem() {
         }
         
     }, [project, userData, userRole]);
-  
-  console.log("project", project)
+
     
     const handleToggle = async (operation, data) => {
    
@@ -360,11 +359,11 @@ const onChange = (e) => {
                       isShow = !isShow;
                       addIsToggle(_id, isShow, 'update');
                       if(!isShow) {
-                        const update = await mutate([data._id, item.id, id, {title, unit, number, price}]);
-                                                
+                        const update = await mutate([data._id, item.id, id, {title, unit, number, price: Number(price)}]);
+                          dispatch(projectsApi.util.resetApiState());                        
                         if(update && update.data) { 
                           // toast(`Позицію кошторису: ${update.data.title} оновлено!`);
-                           dispatch(projectsApi.util.resetApiState()); 
+                          
                            }  else {
                             // console.error('Unexpected response:', update.error.data.message);
                             // toast.error(update.error.data.message);

@@ -1,6 +1,6 @@
 import { useParams, Outlet, NavLink,  useNavigate  } from 'react-router-dom';
 import { useState, useEffect} from 'react';
-import { useGetProjectByIdQuery, useGetProjectLowByIdQuery } from '../../redux/projectSlice/projectSlice';
+import { useGetProjectByIdQuery } from '../../redux/projectSlice/projectSlice';
 import ForbiddenPage from '../ForbiddenPage/ForbiddenPage';
 import s from "./ProjectPage.module.scss";
 
@@ -9,10 +9,12 @@ function ProjectPage() {
     const {id} = useParams();
     const navigate = useNavigate();   
     const { data: project} = useGetProjectByIdQuery(id);
-    const { data: projectSmall} = useGetProjectLowByIdQuery(id);
+    // const { data: projectSmall } = useGetProjectLowByIdQuery(id); lowEstimates
+    
+    console.log("nav page", project?.lowEstimates)
    
     const[data, setData] = useState(project);
-    const [dataLow, setDataLow] = useState(projectSmall);
+    const [dataLow, setDataLow] = useState(project?.lowEstimates);
     const [showForbidden, setShowForbidden] = useState(false);
 
     const navigateLow = () => navigate(`/project/${id}/low`);
@@ -21,8 +23,8 @@ function ProjectPage() {
   
     useEffect(() => {
         setData(project);
-        if(projectSmall) {
-            setDataLow(projectSmall) 
+        if(project?.lowEstimates) {
+            setDataLow(project?.lowEstimates) 
         } 
    
         if (emptyLargeEstimates) {
@@ -41,7 +43,7 @@ function ProjectPage() {
           }
         
           }, [project, dataLow, showForbidden, data]);
-
+//price/low
     return(
         <div className={s.container}>
             {data ? (
@@ -64,11 +66,17 @@ function ProjectPage() {
                 </li>    
                 )}
                
-                {dataLow?.lowEstimates.length !== 0 && dataLow?.lowEstimates  && (
+                {data?.lowEstimates !== 0 && dataLow  && (
                 <li>
-                    <NavLink className={({ isActive }) => isActive ? `${s.link} ${s['link-min']}` : s.link} to={`/project/${id}/low`}>{!project?.estimates?.length ? "Кошторис" : "Знижений кошторис"}</NavLink>
+                    <NavLink className={({ isActive }) => isActive ? `${s.link} ${s['link-min']}` : s.link} to={`/project/${id}/low/project`}>{!project?.estimates?.length ? "Кошторис" : "Знижений кошторис"}</NavLink>
                 </li>
-                )} 
+                            )} 
+                            
+                 {data?.lowPrices && (
+                 <li>
+                    <NavLink className={({ isActive }) => isActive ? `${s.link} ${s['link-min']}` : s.link} to={`/project/${id}/low`}>{!project?.lowPrices?.length ? "Прайс" : "Знижений прайс"}</NavLink>
+                </li>    
+                )}
                    
                 {data?.estimates && (
                  <li>
