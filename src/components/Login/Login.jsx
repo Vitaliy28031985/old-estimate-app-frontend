@@ -2,7 +2,7 @@ import { useState } from 'react';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
-import {useLoginMutation, useGoogleQuery} from "../../redux/auth/authApi";
+import {useLoginMutation, useGoogleQuery, useSendVerifyPasswordMutation, useVerifyPasswordMutation} from "../../redux/auth/authApi";
 import {setCredentials} from "../../redux/auth/authSlice";
 import {priceApi} from "../../redux/price/priceApi";
 import {projectsApi} from "../../redux/projectSlice/projectSlice";
@@ -12,8 +12,17 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [emailTwo, setEmailTwo] = useState('');
+    const [code, setCode] = useState('');
+    const [newPassword, SetNewPassword] = useState('');
+
+    const [show, setShow] = useState(false);
+    const [showCode, setShowCode] = useState(false);
+
     const dispatch = useDispatch();
     const [login] = useLoginMutation();
+    const [sendVerifyPassword] = useSendVerifyPasswordMutation();
+    const [verifyPasswordF] = useVerifyPasswordMutation();
      const { data, error, isLoading, refetch } = useGoogleQuery();
 
   // Функція для ініціації авторизації
@@ -38,6 +47,18 @@ function Login() {
             break;
             case 'password':
             setPassword(value);
+            break;
+            
+            case 'emailTwo':
+            setEmailTwo(value);
+            break;
+            
+            case 'code':
+            setCode(value);
+            break;
+            
+             case 'newPassword':
+            SetNewPassword(value);
             break;
         
            default:
@@ -70,6 +91,32 @@ function Login() {
     // console.log({email, password});
     setEmail('')
     setPassword('')
+     }
+    
+    const sendCode = async e => {
+        e.preventDefault();
+        if (emailTwo !== '')
+            await sendVerifyPassword({ email: emailTwo });
+            setShowCode(true);
+        {
+
+        }
+
+        
+        
+    }
+
+    const verifyPassword = async e => {
+        e.preventDefault();
+        if (code !== '' || newPassword !== '') {
+            await verifyPasswordF({email: emailTwo, code: Number(code), password: newPassword})
+            setShowCode(false);
+            setShow(false);
+        }  
+        
+        setCode('');
+        SetNewPassword('');
+        setEmailTwo('');
     }
 
     const disabled = email === '' && password === '';
@@ -93,6 +140,32 @@ function Login() {
                 <button disabled={disabled} className={disabled ? "button-disabled" : "button"} type="submit">Увійти</button>
                 </div>
             </form>
+            <div className={s.forget}>
+                {!show && (
+                  <button className='button buttonForget'
+                    onClick={() => {
+                        setShow(show => !show);
+                }}
+                >Забули email</button>   
+                )}
+               
+                {show && (<div className={s.showContainer}>
+                    {!showCode ? (
+                      <form onSubmit={sendCode} >
+                        <input type="text" name='emailTwo' placeholder='rube@i.ua' onChange={handleChange} className={s.input} value={emailTwo} />
+                    <button className='button'>Отримати код</button>
+                    </form>    
+                    ) :
+                        (<form onSubmit={verifyPassword}>
+                            <input type="text" name='code' placeholder='1234567892' onChange={handleChange} className={s.input} value={code} />
+                            <input type="text" name="newPassword" placeholder='O#1234' onChange={handleChange} className={s.input} value={newPassword} />
+                            <button className='button'>Змінити Пароль</button>
+                        </form>)
+                
+                }
+                  
+                 </div>)}
+            </div>
         </div>
     )
 }

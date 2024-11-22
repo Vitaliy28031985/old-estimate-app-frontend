@@ -15,10 +15,6 @@ export const authApi = createApi({
     },
   }),
   endpoints: builder => ({
-    current: builder.query({
-      query: () => `/current`,
-      providesTags: ['User'],
-    }),
     login: builder.mutation({
       query: body => ({
         url: '/login',
@@ -50,7 +46,24 @@ export const authApi = createApi({
         method: 'GET',
       }),
       providesTags: ['User'],
+     }),
+     
+    sendVerifyPassword: builder.mutation({
+      query: body => ({
+        url: '/send/verify',
+        method: 'POST',
+        body,
+      }),
     }),
+
+     verifyPassword: builder.mutation({
+      query: body => ({
+        url: '/verify',
+        method: 'POST',
+        body,
+      }),
+    }),
+
     logout: builder.mutation({
       query: () => ({
         url: '/logout',
@@ -60,8 +73,7 @@ export const authApi = createApi({
   }),
 });
 
-export const { useCurrentQuery, useGetUsersQuery, useGoogleQuery,
-   useLoginMutation, useSignupMutation,
-    useAddAllowMutation, useDeleteAllowMutation, useLogoutMutation, useAddAllowUserMutation,
-    useUpdateAllowUserMutation
-  } = authApi;
+export const {
+  useGoogleQuery, useLoginMutation, useSignupMutation,
+  useLogoutMutation, useSendVerifyPasswordMutation, useVerifyPasswordMutation,
+  useAddAllowUserMutation } = authApi;

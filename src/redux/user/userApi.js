@@ -82,5 +82,7 @@ export const {
     useChangeNameMutation,
     useChangeEmailMutation,
     useChangePhoneMutation,
-    useChangeRoleMutation
+    useChangeRoleMutation,
+    useChangePasswordMutation,
+    useChangeAvatarMutation
   } = userApi;

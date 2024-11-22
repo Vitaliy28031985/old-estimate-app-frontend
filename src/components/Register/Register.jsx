@@ -62,7 +62,7 @@ function Register() {
    
     const handleSubmit = async e => {
         e.preventDefault();
-        if(avatar === '' || name === '' || email === '' || phone === '' || role === '' || password === '' || passwordTwo === '' ) {
+        if(name === '' || email === '' || phone === '' || role === '' || password === '' || passwordTwo === '' ) {
             toast("Заповніть усі поля");
             return;
         }
@@ -74,22 +74,16 @@ function Register() {
             toast("введіть пароль з 6 і більше символів");
             return;
         }
-    
-        const formData = new FormData();
-        formData.append('image', avatar);
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('phone', phone);
-        formData.append('role', role);
-        formData.append('password', password);
-    
+
+        const registerData = { name, email, phone, role, password, passwordTwo };
+        
         try {
-             const user = await singup(formData).unwrap();
-             const dataAnswers = await login(loginEl).unwrap();
-             dispatch(setCredentials(user));
-             dispatch(setCredentials(dataAnswers));
-             dispatch(projectsApi.util.resetApiState());
-             dispatch(priceApi.util.resetApiState());
+              await singup(registerData).unwrap();
+            //  const dataAnswers = await login(loginEl).unwrap();
+            //  dispatch(setCredentials(user));
+            //  dispatch(setCredentials(dataAnswers));
+            //  dispatch(projectsApi.util.resetApiState());
+            //  dispatch(priceApi.util.resetApiState());
              
             toast("Реєстрація пройшла успішно");
         } catch (error) {
@@ -118,13 +112,6 @@ function Register() {
             
             <form className={s.form} onSubmit={handleSubmit}>
                 <div>
-            <div {...getRootProps()} className={s.aadPhoto}>
-           <div>
-            <input {...getInputProps()} />
-            {avatar && <img className={s.img} src={URL.createObjectURL(avatar)} alt="" />}
-            <p className={s.aadPhotoText}>Перетягніть файли сюди або натисніть для вибору файлів</p>
-            </div>
-            </div>
                 <div className={s.inputContainer}>
                     <label  for="name">Ім'я</label>
                     <input type="text" name="name"id="name" onChange={handleChange} value={name}  placeholder="Введіть сюди своє ім'я" />
