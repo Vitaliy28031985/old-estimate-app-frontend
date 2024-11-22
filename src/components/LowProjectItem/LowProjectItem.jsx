@@ -466,7 +466,7 @@ const onChange = (e) => {
         
          <div div className={s.totalGeneral}>
           <p>До оплати:</p>
-          {data?.general && (
+          {data?.lowGeneral && (
           <p>{data?.lowGeneral && roundingNumberFn(data?.lowGeneral)}</p>)}
         </div> 
         {deleteEstimate && (<DeleteModal data={currentData} nameComponent={"deleteLowEstimate"} onModal={handleToggle}/>)}
