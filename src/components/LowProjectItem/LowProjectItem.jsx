@@ -446,7 +446,7 @@ const onChange = (e) => {
     
         <div className={s.total}>
           <p>Загальна сума: </p>
-          {data && <p>{data?.total && roundingNumberFn(data?.lowTotal)}</p>}
+          {data && <p>{data?.lowTotal && roundingNumberFn(data?.lowTotal)}</p>}
         </div>
 
         
@@ -467,7 +467,7 @@ const onChange = (e) => {
          <div div className={s.totalGeneral}>
           <p>До оплати:</p>
           {data?.general && (
-          <p>{data?.general && roundingNumberFn(data?.lowGeneral)}</p>)}
+          <p>{data?.lowGeneral && roundingNumberFn(data?.lowGeneral)}</p>)}
         </div> 
         {deleteEstimate && (<DeleteModal data={currentData} nameComponent={"deleteLowEstimate"} onModal={handleToggle}/>)}
         {deletePosition && (<DeleteModal data={currentData} nameComponent={"deleteLowPosition"} onModal={handleToggle}/>)}
