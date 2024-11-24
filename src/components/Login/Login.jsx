@@ -23,13 +23,13 @@ function Login() {
     const [login] = useLoginMutation();
     const [sendVerifyPassword] = useSendVerifyPasswordMutation();
     const [verifyPasswordF] = useVerifyPasswordMutation();
-     const { data, error, isLoading, refetch } = useGoogleQuery();
+    //  const { data, error, isLoading, refetch } = useGoogleQuery();
 
-  // Функція для ініціації авторизації
-  const handleGoogleLogin = () => {
-    // Тут ви можете вручну викликати refetch для ініціації запиту до серверу
-    refetch();
-  };
+//   // Функція для ініціації авторизації
+//   const handleGoogleLogin = () => {
+//     // Тут ви можете вручну викликати refetch для ініціації запиту до серверу
+//     refetch();
+//   };
 
 
     const loginData = {
@@ -119,6 +119,14 @@ function Login() {
         setEmailTwo('');
     }
 
+    const handleGoogleLogin = async () =>
+    {
+        try {
+            const response = await axios.get('https://team-estimate-app-backend.onrender.com/auth/google');
+            window.location.href = response.request.responseURL;
+        }
+        catch (error) { console.error('Error during Google login', error); }
+    };
     const disabled = email === '' && password === '';
 
     return(
