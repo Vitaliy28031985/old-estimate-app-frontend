@@ -154,7 +154,7 @@ function Login() {
                     onClick={() => {
                         setShow(show => !show);
                 }}
-                >Забули email</button>   
+                >Забули пароль</button>   
                 )}
                
                 {show && (<div className={s.showContainer}>
