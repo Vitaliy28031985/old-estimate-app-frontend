@@ -23,8 +23,23 @@
 
   
   .inputContainer {
+    position: relative;
       margin-left: auto;
       margin-right: auto;
+   }
+
+   .middlePriceList {
+    width: 480px;
+    padding: 20px;
+    background: #fff;
+    position: absolute;
+    z-index: 11;
+    
+   }
+
+   .middlePriceList li {
+    cursor: pointer;
+    margin-bottom: 10px;
    }
    .inputContainer label {
        display: block;

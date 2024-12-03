@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {useGetPriceQuery, useAddPriceMutation} from "../../../redux/price/priceApi";
+import {useGetPriceQuery, useAddPriceMutation, useMiddleGetPriceQuery} from "../../../redux/price/priceApi";
 import Mic from "../../Icons/Mic/Mic";
 import s from "./AddPrice.module.scss";
 
 function AddPrice({onModal}) {
-    const {data} = useGetPriceQuery();
+    const { data } = useGetPriceQuery();
+    const { data: middlePrice } = useMiddleGetPriceQuery();
     const [addPrice] = useAddPriceMutation();
     const [title, setTitle] = useState('');
     const [price, setPrice] = useState('');
+    const [middle, setMiddle] = useState(false);
     const [recognition, setRecognition] = useState(null);
     const [isRecording, setIsRecording] = useState(false);
 
+    const normalizeFilter = title.toLowerCase();
+
+    const filteredPrices = middlePrice?.filter(item =>
+      item.title.toLowerCase().includes(normalizeFilter)) ?? [];
+
+    console.log(filteredPrices);
+  
     useEffect( () => {
         if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
           const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -69,10 +78,12 @@ function AddPrice({onModal}) {
 
 
     const handleChange = e => {
-        const {name, value} = e.currentTarget;
+        const { name, value } = e.currentTarget;
+        
         switch (name) {
            case 'title':
             setTitle(value);
+            setMiddle(true);
              break;
             case 'price':
             setPrice(value);
@@ -117,6 +128,11 @@ function AddPrice({onModal}) {
             onModal()
     }
 
+    const fillOutTheForm = async (data) => {
+        await setTitle(data.title);
+        await setPrice(data.price);
+        await setMiddle(false);
+    }
  
     
 
@@ -132,6 +148,16 @@ function AddPrice({onModal}) {
                     placeholder="Введіть сюди назву роботи" />
                     <div className={s.titleButton} onClick={handleStartRecordingClick}><Mic width={"24px"} height={"24px"}/></div>
                     </div>
+                    {middle && (
+                        <ul className={s.middlePriceList}>
+                           {filteredPrices.map(({ id, title, price }) => (
+                           <li onClick={() => fillOutTheForm({title, price})} key={id}>
+                              {title}
+                            </li>
+                        ))}
+                    </ul>    
+                    )}
+                  
             </div>
             <div className={s.inputContainer}>
                     <label  for="price">Ціна роботи</label>

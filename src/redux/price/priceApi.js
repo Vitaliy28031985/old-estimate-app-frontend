@@ -13,7 +13,11 @@ export const priceApi = createApi({
       },
     }),
     tagTypes: ['Price'],
-    endpoints: builder => ({
+  endpoints: builder => ({
+       middleGetPrice: builder.query({
+        query: () => `middle/prices`,
+        providesTags: ['Prices'],
+      }),
       getPrice: builder.query({
         query: () => `prices`,
         providesTags: ['Prices'],
@@ -45,7 +49,8 @@ export const priceApi = createApi({
     }),
   });
 
-  export const {
+export const {
+    useMiddleGetPriceQuery,
     useGetPriceQuery,
     useAddPriceMutation,
     useDeletePriceMutation,
