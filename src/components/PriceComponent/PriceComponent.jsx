@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import {useGetPriceQuery, useUpdatePriceMutation} from "../../redux/price/priceApi";
+import {useGetPriceQuery, useUpdatePriceMutation, useMiddleGetPriceQuery} from "../../redux/price/priceApi";
 
 import AddPrice from '../AddModals/AddPrice/AddPrice';
 import Modal from '../Modal/Modal';
@@ -15,7 +15,8 @@ import s from "./PriceComponent.module.scss";
 
 
 function PriceComponent() {
-    const {data: price} = useGetPriceQuery();
+    const { data: price } = useGetPriceQuery();
+    const { data: middlePrices } = useMiddleGetPriceQuery();
     const[mutate] = useUpdatePriceMutation();
     const [data, setData] = useState(price);
     const [currentData, setCurrentData] = useState({});
@@ -23,6 +24,7 @@ function PriceComponent() {
     const [filter, setFilter] = useState('')
     const [showModal, setShowModal] = useState(false);
     const [deleteModal, setDeleteModal] = useState(false);
+    const [changePrices, setChangePrices] = useState(true);
 
     useEffect(() => {
         setData(price); 
@@ -47,6 +49,10 @@ function PriceComponent() {
             setDeleteModal(toggle => !toggle); 
             setOperations(operation);
            return;
+        }
+        if (operation === "change" || operations === "change") {
+            setChangePrices(toggle => !toggle); 
+            setOperations(operation);
         }
         
     }
@@ -106,11 +112,20 @@ function PriceComponent() {
                     placeholder="Введіть сюди що Ви шукаєте" />
             </div>
 
+            <div className={s.navButtons}>
+                <button onClick={() => handleToggle("change")}>Прайс користувача</button>
+                <button onClick={() => handleToggle("change")}>Прайс середніх цін</button>
+            </div>
+
             <div className={s.titleContainer}>
-            <h3>Прайс робіт</h3>
-            <button onClick={() => handleToggle("price")} className={s.buttonAdd}><Add width={"27"} height={"27"}/></button>
-            </div> 
+                {changePrices ? (<> <h3>Прайс робіт</h3>
+                <button onClick={() => handleToggle("price")} className={s.buttonAdd}><Add width={"27"} height={"27"}/></button>
+                </>) : (<h3>Прайс робіт<br/>(середні ціни)</h3>)}
+           
             
+            </div> 
+            {changePrices ? (
+             <div>  
          <table className={s.iksweb}>
 	<tbody>
 		<tr className={s.tableMin}>
@@ -176,7 +191,100 @@ function PriceComponent() {
         ))}
 		
 	</tbody>
-</table>
+         </table>
+        </div>
+            ) : (
+                     <div> 
+         <table className={s.iksweb}>
+	<tbody>
+		<tr className={s.tableMin}>
+			<td className={s.rowOne}> <p>Найменування робіт</p>
+            
+            </td>
+			<td className={s.twoRow}>Ціна за одиницю в грн.</td>
+		</tr>
+        {middlePrices && middlePrices?.map(({id, _id, title, price, isShow = false, isDelete = false}) => (
+           
+        <tr key={_id}>
+             
+			<td className={s.rowOne} > <p className={s.inputTitle}>{title}</p></td>
+			<td className={s.twoRow}> <p className={s.inputPrice}>{price}</p></td>
+          
+		</tr>    
+        ))}
+		
+	</tbody>
+         </table>
+        </div>
+            )}
+        {/* <div>  
+         <table className={s.iksweb}>
+	<tbody>
+		<tr className={s.tableMin}>
+			<td className={s.rowOne}> <p>Найменування робіт</p>
+            
+            </td>
+			<td className={s.twoRow}>Ціна за одиницю в грн.</td>
+		</tr>
+        {data && filteredContacts?.map(({id, _id, title, price, isShow = false, isDelete = false}) => (
+           
+        <tr key={_id}>
+             
+			<td className={s.rowOne} >
+                
+                   <button  
+                  className={s.buttonUpdate}
+                  onClick={async () => {
+                    isShow = !isShow;
+                    addIsToggle(id, isShow, 'update');
+                    if(!isShow) {
+                      const update =  await mutate({id: id, newData: {title, price: Number(price)}});
+                      if(update && update.data) { 
+                        toast(`Позицію парайсу: ${update.data.title} оновлено!`);
+                     }  else {
+                        console.error('Unexpected response:', update.error.data.message);
+                        toast.error(update.error.data.message);
+                       
+                        }
+                      try {
+                      } catch (error) {          
+                        console.error('Error delete project:', error);  
+                    } 
+                    }
+                    }}
+                  >
+                    {isShow ? (<UpdateOk width='22' height='22'/>) :
+                    (<Update width='22' height='22'/>)
+                    }
+                  
+                  </button>
+                  {!isShow ? 
+                  (<p className={s.inputTitle}>{title}</p>) :
+                  (<input id={id} name='title' className={s.inputTitle} value={title} disabled={!isShow} onChange={onChange} />)
+                  }
+                </td>
+			<td className={s.twoRow}> 
+            {!isShow ? 
+            (<p className={s.inputPrice}>{price}</p>) :
+            (<input id={id} name='price' className={s.inputPrice} value={price} disabled={!isShow} onChange={onChange} />) 
+            }
+               <button className={s.buttonDelete} onClick={() => {
+                isDelete = !isDelete;
+                addIsToggle(id, isDelete, 'delete');
+                setCurrentData({id, title}); 
+                handleToggle("delete");
+            }}>
+                <Delete width={"24"} height={"24"}/>
+                
+                </button>                 
+            </td>
+          
+		</tr>    
+        ))}
+		
+	</tbody>
+         </table>
+        </div> */}
 {deleteModal && (<DeleteModal data={currentData} nameComponent={"price"} onModal={handleToggle}/>)}
 {showModal && (<Modal onModal={handleToggle}><AddPrice onModal={handleToggle}/></Modal>)}
 

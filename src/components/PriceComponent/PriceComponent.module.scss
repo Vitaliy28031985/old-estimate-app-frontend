@@ -3,6 +3,18 @@
     justify-content: center;
  }
 
+ .navButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+ }
+
+ .navButtons button {
+    padding: 5px;
+    cursor: pointer;
+ }
+
      .inputContainer input {
         width: 280px;
         height: 72px;
