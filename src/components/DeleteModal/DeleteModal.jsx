@@ -34,7 +34,7 @@ function DeleteModal({data, nameComponent, onModal}) {
         // Загальний прайс
 
         if(nameComponent === "price") {
-             await deletePrice(data._id);
+             await deletePrice(data.id);
             try {
              toast(`"${data.title}" успішно видалена!`);   
             } catch (error) {

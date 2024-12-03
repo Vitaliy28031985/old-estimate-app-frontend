@@ -8,6 +8,11 @@ import {priceApi} from "../../redux/price/priceApi";
 import {projectsApi} from "../../redux/projectSlice/projectSlice";
 import s from "./Login.module.scss";
 
+import axios from 'axios';
+
+import { GoogleOAuthProvider, GoogleLogin, useGoogleOneTapLogin, useGoogleLogin } from '@react-oauth/google';
+
+
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -23,7 +28,7 @@ function Login() {
     const [login] = useLoginMutation();
     const [sendVerifyPassword] = useSendVerifyPasswordMutation();
     const [verifyPasswordF] = useVerifyPasswordMutation();
-    //  const { data, error, isLoading, refetch } = useGoogleQuery();
+     const { data, error, isLoading, refetch } = useGoogleQuery();
 
 //   // Функція для ініціації авторизації
 //   const handleGoogleLogin = () => {
@@ -31,6 +36,7 @@ function Login() {
 //     refetch();
 //   };
 
+    
 
     const loginData = {
         email,
@@ -119,21 +125,33 @@ function Login() {
         setEmailTwo('');
     }
 
-    const handleGoogleLogin = async () =>
-    {
-        try {
-            const response = await axios.get('https://team-estimate-app-backend.onrender.com/auth/google');
-            window.location.href = response.request.responseURL;
-        }
-        catch (error) { console.error('Error during Google login', error); }
-    };
+    // const handleGoogleLogin = async () =>
+    // {
+    //     try {
+    //         const response = await axios.get('https://team-estimate-app-backend.onrender.com/auth/google');
+    //         window.location.href = response.request.responseURL;
+    //     }
+    //     catch (error) { console.error('Error during Google login', error); }
+    // };
+
+
+
     const disabled = email === '' && password === '';
 
     return(
     <div>
             <h1>Авторизація</h1>
             
-            <button className={s.googleButton} onClick={handleGoogleLogin} >Продовжити з Google</button>
+            {/* <button className={s.googleButton}
+                onClick={handleGoogleLogin}
+            >Продовжити з Google</button> */}
+
+            {/* <GoogleOAuthProvider clientId="170491652917-vu87cl9rvfmqjit6shg7u7prb7vtk70k.apps.googleusercontent.com">
+              <GoogleLogin
+        onSuccess={handleLoginSuccess}
+        onError={handleLoginError}
+      />
+            </GoogleOAuthProvider> */}
     
             <form className={s.form} onSubmit={handleSubmit}>
                 <div>
@@ -154,7 +172,7 @@ function Login() {
                     onClick={() => {
                         setShow(show => !show);
                 }}
-                >Забули email</button>   
+                >Забули пароль?</button>   
                 )}
                
                 {show && (<div className={s.showContainer}>

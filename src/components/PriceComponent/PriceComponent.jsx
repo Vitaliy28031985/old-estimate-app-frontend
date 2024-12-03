@@ -55,7 +55,7 @@ function PriceComponent() {
     const addIsToggle = (id, currentIsShow, name) => {
         setData(prevData => {
             const newData = prevData.map(price => {
-                if (price._id === id) {
+                if (price.id === id) {
                     if(name === 'update') {
                         return { ...price, isShow: currentIsShow };
                     }
@@ -74,7 +74,7 @@ function PriceComponent() {
         const { name, value, id } = e.currentTarget;
         setData(prevData => {
             const newData = prevData.map(price => {
-                if (price._id === id) {
+                if (price.id === id) {
                     switch (name) {
                         case name:
                             return  {...price, [name]: value};
@@ -119,7 +119,7 @@ function PriceComponent() {
             </td>
 			<td className={s.twoRow}>Ціна за одиницю в грн.</td>
 		</tr>
-        {data && filteredContacts?.map(({_id, title, price, isShow = false, isDelete = false}) => (
+        {data && filteredContacts?.map(({id, _id, title, price, isShow = false, isDelete = false}) => (
            
         <tr key={_id}>
              
@@ -129,9 +129,9 @@ function PriceComponent() {
                   className={s.buttonUpdate}
                   onClick={async () => {
                     isShow = !isShow;
-                    addIsToggle(_id, isShow, 'update');
+                    addIsToggle(id, isShow, 'update');
                     if(!isShow) {
-                      const update =  await mutate({id: _id, newData: {title, price}});
+                      const update =  await mutate({id: id, newData: {title, price: Number(price)}});
                       if(update && update.data) { 
                         toast(`Позицію парайсу: ${update.data.title} оновлено!`);
                      }  else {
@@ -153,18 +153,18 @@ function PriceComponent() {
                   </button>
                   {!isShow ? 
                   (<p className={s.inputTitle}>{title}</p>) :
-                  (<input id={_id} name='title' className={s.inputTitle} value={title} disabled={!isShow} onChange={onChange} />)
+                  (<input id={id} name='title' className={s.inputTitle} value={title} disabled={!isShow} onChange={onChange} />)
                   }
                 </td>
 			<td className={s.twoRow}> 
             {!isShow ? 
             (<p className={s.inputPrice}>{price}</p>) :
-            (<input id={_id} name='price' className={s.inputPrice} value={price} disabled={!isShow} onChange={onChange} />) 
+            (<input id={id} name='price' className={s.inputPrice} value={price} disabled={!isShow} onChange={onChange} />) 
             }
                <button className={s.buttonDelete} onClick={() => {
                 isDelete = !isDelete;
-                addIsToggle(_id, isDelete, 'delete');
-                setCurrentData({_id, title}); 
+                addIsToggle(id, isDelete, 'delete');
+                setCurrentData({id, title}); 
                 handleToggle("delete");
             }}>
                 <Delete width={"24"} height={"24"}/>
