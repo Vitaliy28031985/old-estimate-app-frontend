@@ -15,7 +15,7 @@ export const priceApi = createApi({
     tagTypes: ['Price'],
   endpoints: builder => ({
        middleGetPrice: builder.query({
-        query: () => `middle/prices`,
+        query: () => `prices/middle`,
         providesTags: ['Prices'],
       }),
       getPrice: builder.query({

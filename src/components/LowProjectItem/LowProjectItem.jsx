@@ -361,7 +361,7 @@ const onChange = (e) => {
                       addIsToggle(id, isShow, 'update');
                       if (!isShow) {
                         console.log(isShow)
-                        const update = await updateLowPosition([data._id, item.id, id, {title, unit, number, price: Number(price)}]);
+                        const update = await updateLowPosition([data._id, item.id, id, {title, unit, number: Number(number), price: Number(price)}]);
                           dispatch(projectsApi.util.resetApiState());                       
                         if(update && update.data) { 
                           // toast(`Позицію кошторису: ${update.data.title} оновлено!`);

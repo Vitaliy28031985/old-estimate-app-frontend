@@ -358,8 +358,9 @@ const onChange = (e) => {
                     onClick={ async() => {
                       isShow = !isShow;
                       addIsToggle(_id, isShow, 'update');
-                      if(!isShow) {
-                        const update = await mutate([data._id, item.id, id, {title, unit, number, price: Number(price)}]);
+                      if (!isShow) {
+                        const newPrice = Number(price);
+                        const update = await mutate([data._id, item.id, id, {title, unit, number: Number(number), price: newPrice}]);
                           dispatch(projectsApi.util.resetApiState());                        
                         if(update && update.data) { 
                           // toast(`Позицію кошторису: ${update.data.title} оновлено!`);
